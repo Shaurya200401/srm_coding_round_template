@@ -74,7 +74,7 @@ def first_stable_character(s):
 
 
 if __name__ == "__main__":
-    # Testing solution here
+    # Test your solution here
     print(first_stable_character("abccba"))  # Should print: c
     print(first_stable_character("abc"))     # Should print: None
     print(first_stable_character("a"))       # Should print: None
