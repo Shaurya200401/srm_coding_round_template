@@ -54,7 +54,6 @@ def first_stable_character(s):
     # I'm tracking the first and last occurrence of each character
     first_occurrence = {}
     last_occurrence = {}
-    
 
     for i, char in enumerate(s):
         if char not in first_occurrence:

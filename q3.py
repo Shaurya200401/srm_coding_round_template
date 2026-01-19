@@ -78,7 +78,6 @@ def find_overloaded_users(events):
     for user_id, timestamps in user_events.items():
         # Sorting timestamps
         timestamps.sort()
-        
         # checking for overload(>3 events in 10 sec)
         for i in range(len(timestamps)):
             count = 0
@@ -86,13 +85,11 @@ def find_overloaded_users(events):
                 if timestamps[j] - timestamps[i] < 10:   # under 10 sec check
                     count += 1
                 else:
-                    break
-                  
+                    break      
             # task counter>3
             if count >= 3:                 
                 overloaded.add(user_id)
                 break
-    
     return overloaded
 
 
