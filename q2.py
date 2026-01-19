@@ -64,8 +64,16 @@ def compressed_stack_length(lst):
         >>> compressed_stack_length([])
         0
     """
-    # TODO: Implement your solution here
-    pass
+    stack = []
+    
+    for i in lst:
+        # 1st check for same number appearing consecutively
+        if stack and stack[-1] == i:
+            stack.pop()
+        else:
+            stack.append(i)
+    
+    return len(stack)
 
 
 if __name__ == "__main__":
@@ -73,3 +81,6 @@ if __name__ == "__main__":
     print(compressed_stack_length([1, 2, 2, 3]))    # Should print: 2
     print(compressed_stack_length([4, 4, 4, 4]))    # Should print: 0
     print(compressed_stack_length([]))              # Should print: 0
+    #custom tests
+    print(compressed_stack_length([1, 1, 2, 2, 1])) # 1
+    print(compressed_stack_length([5, 5, 5, 6, 6, 5, 5])) #1

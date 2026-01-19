@@ -66,8 +66,34 @@ def find_overloaded_users(events):
         >>> find_overloaded_users([(1, 1), (1, 20), (1, 40)])
         set()
     """
-    # TODO: Implement your solution here
-    pass
+    # arranging users based on their id
+    user_events = {}
+    for user_id, timestamp in events:
+        if user_id not in user_events:
+            user_events[user_id] = []
+        user_events[user_id].append(timestamp)
+    
+    overloaded = set() # to store overloaded users
+    
+    for user_id, timestamps in user_events.items():
+        # Sorting timestamps
+        timestamps.sort()
+        
+        # checking for overload(>3 events in 10 sec)
+        for i in range(len(timestamps)):
+            count = 0
+            for j in range(i, len(timestamps)):
+                if timestamps[j] - timestamps[i] < 10:   # under 10 sec check
+                    count += 1
+                else:
+                    break
+                  
+            # task counter>3
+            if count >= 3:                 
+                overloaded.add(user_id)
+                break
+    
+    return overloaded
 
 
 if __name__ == "__main__":
@@ -81,3 +107,7 @@ if __name__ == "__main__":
     print(find_overloaded_users([]))  # Should print: set()
 
     print(find_overloaded_users([(1, 1), (1, 20), (1, 40)]))  # Should print: set()
+    
+    # custom tests
+    print(find_overloaded_users([(2, 5), (2, 8), (2, 12), (2, 15), (2, 18)]))  # {2}
+    print(find_overloaded_users([(4, 0), (4, 5), (4, 9), (4, 15), (4, 20), (4, 25)]))  # {4}
